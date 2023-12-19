@@ -6,7 +6,6 @@ import { dataContext } from "../../context/useDataContext";
 function Main() {
   const [errors, setErrors] = useState([]);
   const data = useContext(dataContext);
-
   const handleFileChange =(event) => {
     event.preventDefault();
     const file = event.target.files[0];
@@ -28,9 +27,10 @@ function Main() {
       if(!errorIndecies.length) {
         data.setData(dataMatrix);
       }
+      
     }
   }
-
+  console.log(data.data);
   return (
     <>
       <input type="file" onChange={handleFileChange}></input>
