@@ -28,14 +28,12 @@ function parseDate(dateString) {
 
   const formats = [
     'YYYY-MM-DD',
-    'MM/DD/YYYY',
     'DD/MM/YYYY',
     'YYYY-MM-DDTHH:mm:ss',
   ];
 
   for (let format of formats) {
     const parsedDate = tryParseDate(dateString, format);
-    console.log(parsedDate);
     if (parsedDate) {
       return parsedDate;
     }
