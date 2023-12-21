@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
 import { Outlet } from "react-router-dom";
-import { formatDataToMap } from "../../utils/dataParcingUtils";
+import { formatDataToMap } from "../../utils/dataParsingUtils";
 import { dataContext } from "../../context/useDataContext";
 
 function Main() {
