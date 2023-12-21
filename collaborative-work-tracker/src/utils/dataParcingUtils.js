@@ -1,20 +1,26 @@
-export function formatDataToMatrix(data) {
+export function formatDataToMap(data) {
   const dataArr = splitStringToArray(data).filter((row) => row.trim().length !== 0)
   .map((row) => row.split(",").map((s) => s.trim()));
 
-  const formattedData = dataArr.map((row) => {
-    return row.map((e, index) => {
-      if(index < 2) {
-        return parseInt(e);
-      } else if (index === 2) {
-        return parseDate(e);
-      } else if (index === 3 && e !== "NULL") {
-        return parseDate(e);
-      } else {
-        return new Date();
-      }
-    })
-  })
+  const errors = [];
+  const formattedData = dataArr.map((item, index) => {
+    
+    if (item.length !== 4) {
+      errors.push(index + 1)
+      return null;
+    }
+
+    return {
+      empID: parseInt(item[0]),
+      projectID: parseInt(item[1]),
+      dateFrom: parseDate(item[2]),
+      dateTo: item[3] === "NULL" ? new Date() : parseDate(item[3])
+    };
+  });
+  
+  if(errors.length) {
+    return errors;
+  }
 
   return formattedData;        
 }
@@ -30,6 +36,7 @@ function parseDate(dateString) {
     'YYYY-MM-DD',
     'DD/MM/YYYY',
     'YYYY-MM-DDTHH:mm:ss',
+    'DD.MM.YYYY',
   ];
 
   for (let format of formats) {
