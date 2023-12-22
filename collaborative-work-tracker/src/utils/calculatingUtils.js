@@ -15,8 +15,6 @@ export function calculateLongestCollaboration(employeesMap) {
       if (empID1 !== empID2) {
 
         const commonProjects = findCommonProjectsBetweenTwoEmp(projects1, projects2);
-
-        console.log(commonProjects);
         const totalDaysWorked = calculateTotalDaysWorkedBetweenTwoEmp(commonProjects);
 
         if (totalDaysWorked > longestCollaboration.daysWorked) {
@@ -32,9 +30,7 @@ export function calculateLongestCollaboration(employeesMap) {
       }
     }
   }
-
-  console.log(longestCollaboration);
-
+  
   return longestCollaboration;
 }
 
