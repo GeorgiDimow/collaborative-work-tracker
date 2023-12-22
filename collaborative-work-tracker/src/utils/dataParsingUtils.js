@@ -1,5 +1,3 @@
-import { hadWorkedTogether } from "./validatingUtils";
-
 export function formatDataToMap(data) {
   const dataArr = splitStringToArray(data)
     .filter((row) => row.trim().length !== 0)

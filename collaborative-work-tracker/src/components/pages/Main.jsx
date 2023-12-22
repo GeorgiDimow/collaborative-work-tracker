@@ -2,6 +2,7 @@ import { useState, useContext } from "react";
 import { Outlet } from "react-router-dom";
 import { formatDataToMap } from "../../utils/dataParsingUtils";
 import { dataContext } from "../../context/useDataContext";
+import { LongestCollabWork } from "./LongestCollabWork";
 
 function Main() {
   const [errors, setErrors] = useState([]);
@@ -31,6 +32,7 @@ function Main() {
     <>
       <input type="file" onChange={handleFileChange}></input>
       {errors.length ? <p>Invalid data on row: {errors.join(', ')}</p> : null}
+      <LongestCollabWork />
       <Outlet />
     </>
   );
