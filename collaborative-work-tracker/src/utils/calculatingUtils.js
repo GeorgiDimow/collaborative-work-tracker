@@ -30,12 +30,12 @@ export function calculateLongestCollaboration(employeesMap) {
       }
     }
   }
-  
+
   return longestCollaboration;
 }
 
 
-function calculateDaysBetweenTwoDates(dateFrom, dateTo) {
+export function calculateDaysBetweenTwoDates(dateFrom, dateTo) {
   if (!dateFrom || !dateTo) {
     console.error('Invalid date format');
     return null;

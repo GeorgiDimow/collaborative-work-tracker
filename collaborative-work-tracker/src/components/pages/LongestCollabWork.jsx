@@ -1,12 +1,23 @@
 import { useContext } from "react";
 import { calculateLongestCollaboration } from "../../utils/calculatingUtils";
 import { dataContext } from "../../context/useDataContext";
+import { useState } from "react";
+import { useEffect } from "react";
+import { ShowMoreLongestCollab } from "../organisums/ShowMoreLongestCollaboration";
 
 export function LongestCollabWork() {
   const data = useContext(dataContext);
-  const longestCollaboration = calculateLongestCollaboration(data.employeesData);
+  const [longestCollaboration, setLongestCollaboration] = useState(data.employeesData);
 
-  return <p>The longest collaboration work on common projects is between: {longestCollaboration.empID1}, {longestCollaboration.empID2}</p>;
+  useEffect(() => {
+    setLongestCollaboration(calculateLongestCollaboration(data.employeesData));
+    console.log(longestCollaboration);
+  }, [data.employeesData]);
+
+  return (
+    <>
+      {longestCollaboration.empID1 ? <ShowMoreLongestCollab longestCollaboration={longestCollaboration} /> : null}
+      
+    </>
+  );
 }
-
-
