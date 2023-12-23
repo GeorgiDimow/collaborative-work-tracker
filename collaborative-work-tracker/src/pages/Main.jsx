@@ -1,8 +1,9 @@
 import { useState, useContext } from "react";
 import { Outlet } from "react-router-dom";
-import { formatDataToMap } from "../../utils/dataParsingUtils";
-import { dataContext } from "../../context/useDataContext";
-import { LongestCollabWork } from "./LongestCollabWork";
+import { formatDataToMap } from "../utils/dataParsingUtils";
+import { dataContext } from "../context/useDataContext";
+import { LongestCollabWork } from "../components/LongestCollabWork";
+import styles from "./main.module.css"; 
 
 function Main() {
   const [errors, setErrors] = useState([]);
@@ -30,8 +31,17 @@ function Main() {
 
   return (
     <>
-      <input type="file" onChange={handleFileChange}></input>
-      {errors.length ? <p>Invalid data on row: {errors.join(', ')}</p> : <LongestCollabWork />}
+      <div className={styles.container}>
+        <h1>Collaborative Work Tracker</h1>
+        <button>
+          <label>
+            <input type="file" onChange={handleFileChange} />
+            Upload employees information
+          </label>
+        </button> 
+        {errors.length ? <p>Invalid data on row: {errors.join(', ')}</p> : <LongestCollabWork />}
+      </div>
+      
       <Outlet />
     </>
   );

@@ -10,7 +10,7 @@ export function formatDataToMap(data) {
   dataArr.forEach((item, index) => {
     const empID = item[0];
 
-    if (item.length !== 4) {
+    if (item.length !== 4 && (parseDate(item[3]) < parseDate(item[2]))) {
       errors.push(index + 1);
       return null;
     }

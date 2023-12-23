@@ -1,12 +1,13 @@
-import { useEffect } from "react";
 import { useState } from "react";
-import { calculateDaysBetweenTwoDates } from "../../utils/calculatingUtils";
+import { calculateDaysBetweenTwoDates } from "../utils/calculatingUtils";
 
 export function ShowMoreLongestCollab({ longestCollaboration }) {
   const [displayMore, setDisplayMore] = useState(false);
+  const [word, setWord] = useState('more');
 
   const hadleClick = (() => {
-    displayMore ? setDisplayMore(false) : setDisplayMore(true)
+    displayMore ? setDisplayMore(false) : setDisplayMore(true);
+    displayMore ? setWord('more') : setWord('less');
   })
 
   return (
@@ -31,7 +32,7 @@ export function ShowMoreLongestCollab({ longestCollaboration }) {
         }
       </ul> : null}
       
-      <button id="myBtn" onClick={hadleClick}>Show more information</button>
+      <button id="myBtn" onClick={hadleClick}>Show {word} information</button>
     </>
   );
 }
