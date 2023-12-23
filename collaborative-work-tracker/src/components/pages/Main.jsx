@@ -22,7 +22,7 @@ function Main() {
         setErrors(dataMatrix);
         return;
       }
-
+      setErrors([]);
       data.setData(dataMatrix);
 
     }
@@ -31,8 +31,7 @@ function Main() {
   return (
     <>
       <input type="file" onChange={handleFileChange}></input>
-      {errors.length ? <p>Invalid data on row: {errors.join(', ')}</p> : null}
-      <LongestCollabWork />
+      {errors.length ? <p>Invalid data on row: {errors.join(', ')}</p> : <LongestCollabWork />}
       <Outlet />
     </>
   );

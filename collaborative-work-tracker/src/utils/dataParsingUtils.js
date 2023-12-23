@@ -14,7 +14,7 @@ export function formatDataToMap(data) {
       errors.push(index + 1);
       return null;
     }
-
+    
     const projectData = {
       projectID: parseInt(item[1]),
       dateFrom: parseDate(item[2]),
@@ -41,6 +41,7 @@ function splitStringToArray(data) {
 function parseDate(dateString) {
   const formats = [
     "YYYY-MM-DD",
+    "MM/DD/YYYY",
     "DD/MM/YYYY",
     "YYYY-MM-DDTHH:mm:ss",
     "DD.MM.YYYY",
@@ -69,7 +70,27 @@ function tryParseDate(dateString, format) {
   const match = dateString.match(regex);
 
   if (match) {
-    const [, year, month, day, hour, minute, second] = match;
+    let [year, month, day, hour, minute, second] = [0, 0, 0, 0, 0, 0];
+
+    switch (format){
+      case "YYYY-MM-DD":
+        [, year, month, day, ] = match;
+        
+        break;
+      case "MM/DD/YYYY":
+        [, month, day, year, ] = match;
+        break;
+      case "DD/MM/YYYY":
+        [, day, month, year, ] = match;
+        break;
+      case "YYYY-MM-DDTHH:mm:ss":
+        [, year, month, day, hour, minute, second ] = match;
+        break;
+      case "DD.MM.YYYY":
+        [, day, month, year, ] = match;
+        break;
+    }
+    
     const parsedDate = new Date(
       year,
       month - 1,

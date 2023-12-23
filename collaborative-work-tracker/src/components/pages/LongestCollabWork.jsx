@@ -11,7 +11,6 @@ export function LongestCollabWork() {
 
   useEffect(() => {
     setLongestCollaboration(calculateLongestCollaboration(data.employeesData));
-    console.log(longestCollaboration);
   }, [data.employeesData]);
 
   return (
