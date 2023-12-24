@@ -13,10 +13,9 @@ export function calculateLongestCollaboration(employeesMap) {
   for (const [empID1, projects1] of traverseMap) {
     for (const [empID2, projects2] of traverseMap) {
       if (empID1 !== empID2) {
-
         const commonProjects = findCommonProjectsBetweenTwoEmp(projects1, projects2);
         const totalDaysWorked = calculateTotalDaysWorkedBetweenTwoEmp(commonProjects);
-
+        
         if (totalDaysWorked > longestCollaboration.daysWorked) {
           longestCollaboration = {
             empID1,
@@ -25,9 +24,8 @@ export function calculateLongestCollaboration(employeesMap) {
             projects: commonProjects
           };
         }
-        traverseMap.delete(empID1);
-        traverseMap.delete(empID2);
       }
+      traverseMap.delete(empID1);
     }
   }
 
