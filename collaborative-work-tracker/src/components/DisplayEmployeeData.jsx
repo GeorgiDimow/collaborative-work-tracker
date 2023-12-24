@@ -1,11 +1,11 @@
+import styles from "./display-data.module.css";
+
 export function DisplayEmployeeData({ employeeData }) {
   const { employeeId, projects } = employeeData;
 
   return (
-    <div>
-      <p>Employee ID: {employeeId}</p>
-
-      <h3>Projects:</h3>
+    <div className={styles.container}>
+      <h4>Employee ID: {employeeId}</h4>
       <ul>
         {projects.map((project, index) => (
           <li key={index}>

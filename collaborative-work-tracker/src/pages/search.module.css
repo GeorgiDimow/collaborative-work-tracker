@@ -19,6 +19,7 @@ h3 {
   padding-top: 50px;
   padding-bottom: 50px;
   border-radius: 20px;
+  box-sizing: border-box;
 }
 
 form {
@@ -57,5 +58,4 @@ form input {
 
 form button {
   max-width: 33%;
-  
 }

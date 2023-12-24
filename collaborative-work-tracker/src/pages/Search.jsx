@@ -78,7 +78,6 @@ function Search() {
       </form>
 
       <div>
-        <h3>Search Results</h3>
         {displayData ? <>{searchOption === "employeeId" ? <DisplayEmployeeData employeeData={displayResult} /> : <DisplayProjectData projectData={displayResult} />}</> : null}
       </div>
     </div>
