@@ -8,7 +8,7 @@ export function calculateLongestCollaboration(employeesMap) {
     daysWorked: 0,
     projects: null,
   };
-  const traverseMap = employeesMap;
+  const traverseMap = new Map(employeesMap);
 
   for (const [empID1, projects1] of traverseMap) {
     for (const [empID2, projects2] of traverseMap) {

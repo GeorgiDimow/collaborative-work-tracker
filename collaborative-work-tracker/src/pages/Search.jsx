@@ -1,28 +1,56 @@
 import React, { useState } from 'react';
+import { useContext } from 'react';
+import { dataContext } from '../context/useDataContext';
 import styles from "./search.module.css"; 
+import {DisplayEmployeeData } from "../components/DisplayEmployeeData";
+import {DisplayProjectData  } from "../components/DisplayProjectData";
 
-const Search = () => {
+function Search() {
   const [searchOption, setSearchOption] = useState('employeeId');
-  const [searchQuery, setSearchQuery] = useState('');
   const [results, setResults] = useState([]);
-
+  const [displayData, setDisplayData] = useState(false);
+  const [displayResult, setdisplayResult] = useState([]);
+  const [erorrMassage, setErrorMassage] = useState('');
+  const data = useContext(dataContext);
+  
   const handleOptionChange = (event) => {
+    setDisplayData(false);
     setSearchOption(event.target.value);
   };
 
+  
   const handleQueryChange = (event) => {
-    setSearchQuery(event.target.value);
+      event.preventDefault();
+
+      const id = +event.target.value;
+
+      if (isNaN(id) || id < 0) {
+        setErrorMassage('The Id must be a number!')
+        return;
+      } else {
+        setErrorMassage('');
+      }
+
+      switch (searchOption) {
+        case 'employeeId':
+          if (data.employeesData.has(id)){
+            setResults({employeeId: id, projects: data.employeesData.get(id)});
+          }
+          break;
+        case 'projectId':
+          if (data.projectsData.has(id)) {
+            setResults({ projectId: id, employees: data.projectsData.get(id) });
+          }
+          break;
+      }
+      
   };
 
   const handleSearch = (event) => {
     event.preventDefault();
 
-    const filteredResults = results.filter(
-      (result) =>
-        result[searchOption].toLowerCase().includes(searchQuery.toLowerCase())
-    );
-
-    setResults(filteredResults);
+    setDisplayData(true);
+    setdisplayResult(results);
   };
 
   return (
@@ -42,23 +70,16 @@ const Search = () => {
           <input
             type="text"
             placeholder={`Enter id`}
-            value={searchQuery}
             onChange={handleQueryChange}
           />
         </label>
-
+        {erorrMassage.length > 0 ? erorrMassage : null}
         <button type="submit">Search</button>
       </form>
 
       <div>
         <h3>Search Results</h3>
-        <ul>
-          {results.map((result, index) => (
-            <li key={index}>
-              {`Employee ID: ${result.employeeId}, Project ID: ${result.projectId}, Name: ${result.name}`}
-            </li>
-          ))}
-        </ul>
+        {displayData ? <>{searchOption === "employeeId" ? <DisplayEmployeeData employeeData={displayResult} /> : <DisplayProjectData projectData={displayResult} />}</> : null}
       </div>
     </div>
   );

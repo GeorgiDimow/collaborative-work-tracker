@@ -1,8 +1,7 @@
-import { createContext, useMemo, useState } from "react";
+import { createContext, useState } from "react";
 import { createProjectMap } from "../utils/dataParsingUtils";
 
 const dataContext = createContext();
-
 
 function DataProvider({ children }) {
   const [employeesData, setEmployeesData] = useState([]);
@@ -11,22 +10,15 @@ function DataProvider({ children }) {
   function setData(inputData) {
     setEmployeesData(inputData);
     setProjectsData(createProjectMap(inputData));
-  } 
+  }
 
-  const data = useMemo(() => {
-      return {
-        employeesData,
-        projectsData,
-        setData,
-      };
-  }, [employeesData, projectsData]);
+  const data = {
+    employeesData,
+    projectsData,
+    setData,
+  };
 
-
-  return (
-      <dataContext.Provider value={data}>
-        {children}
-      </dataContext.Provider>
-  );
+  return <dataContext.Provider value={data}>{children}</dataContext.Provider>;
 }
 
-export { DataProvider, dataContext};
+export { DataProvider, dataContext };
