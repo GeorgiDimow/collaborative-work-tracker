@@ -1,0 +1,18 @@
+ul.more {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+}
+
+.more li {
+  background-color: rgb(247, 233, 233);
+  border-radius: 10px;
+  box-shadow: 10px 10px 5px rgb(197, 180, 158);
+  padding: 10px 10px 10px 10px;
+}
+
+.days {
+  font-size: 24px;
+}

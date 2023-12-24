@@ -41,7 +41,6 @@ function Main() {
         </button> 
         {errors.length ? <p>Invalid data on row: {errors.join(', ')}</p> : <LongestCollabWork />}
       </div>
-      
       <Outlet />
     </>
   );
