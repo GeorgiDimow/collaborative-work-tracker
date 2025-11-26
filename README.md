@@ -1,6 +1,5 @@
 # collaborative-work-tracker
 
-Collaborative Work Tracker 
 The Collaborative Work Tracker project is designed to identify pairs of employees who have collaborated on common projects for the longest period. The application calculates the duration of collaboration, taking into account the DateTo field (nullable, defaulting to the current date) and supporting multiple date formats. Input data is loaded from a CSV file, and the application is built using React, adhering to clean code conventions.
 
 Features
